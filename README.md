@@ -14,12 +14,12 @@
 | body     | text      |
 | image    | string    |
 | group_id | reference |
-| user_id  | ref       |
+| user_id  | reference |
 |          |           |
 
 # Groups
 
 | column  | type |
 | ------- | ---- |
-| user_id | refe |
+| user_id | reference |
 
