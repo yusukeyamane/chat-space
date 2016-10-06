@@ -15,7 +15,6 @@
 | image    | string    |
 | group_id | reference |
 | user_id  | reference |
-|          |           |
 
 # Groups
 
