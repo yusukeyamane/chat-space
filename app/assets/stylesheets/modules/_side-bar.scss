@@ -1,0 +1,55 @@
+.sidebar {
+  width: 300px;
+  float: left;
+  &__header {
+    @include clearfix();
+    height: 60px;
+    background-color: $blue-black;
+    padding: 20px;
+    position: relative;
+    // width: 100%;
+    &__contents {
+      // width: 100%;
+      @include clearfix();
+      &__list-user-name {
+        color: #FFF;
+        h5 {
+          font-size: 16px;
+          font-weight: bold;
+          float: left;
+          line-height: 60px;
+          letter-spacing: 2px;
+        }
+      }
+      &__list {
+        float: right;
+        line-height: 60px;
+        &__icon {
+          color: #FFF;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+  &__contents {
+    height: 100vw;
+    width: 100%;
+    background-color: $deep-blue;
+    &__list {
+      display: block;
+      padding: 20px 20px;
+      &__link {
+        color: #fff;
+        .group-name {
+          display: inline-block;
+          font-size: 15px;
+          margin-bottom: 10px;
+        }
+        .group-chat {
+          font-size: 11px;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
