@@ -1,0 +1,4 @@
+@import "reset";  /*_reset.scssを読み込む */
+@import "./config/variable";
+@import "./modules/chat-contents";
+@import "./modules/side-bar";
