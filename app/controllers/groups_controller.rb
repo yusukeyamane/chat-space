@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
   def index
-    @groups = Groups.all.include(:chats)
+    @groups = Group.all
   end
 end

@@ -1,0 +1,22 @@
+.chat
+  = render "layouts/sidebar"
+  .chat-view
+    .chat-view__header
+      .chat-view__header__contents
+        .chat-view__header__contents__info
+          .chat-view__header__contents__info__left
+            %h5 #{@group.name}
+            %p Members:
+          .chat-view__header__contents__info__right
+            = link_to "Edit", "#", aciton: :edit, class: "chat-view__header__contents__info__right__edit-btn"
+    .chat-view__messages
+      - if @chat.errors.any?
+        %p.alert #{ @chat.errors.full_messages.first }
+      %ul.chat-view__messages__contents
+        = render @chats, partial: "chats/chat"
+    .chat-view__chat-footer
+      = form_for @chat, html: { class: "chat-view__chat-footer__form" } do |f|
+        = f.text_field :body, placeholder: "Type message"
+        = f.file_field :image
+        = f.hidden_field :group_id, value: "#{@group.id}"
+        = f.submit "Send", id: "submit_btn"
