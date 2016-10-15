@@ -8,7 +8,7 @@
             %h5 #{@group.name}
             %p Members:
           .chat-view__header__contents__info__right
-            = link_to "Edit", "#", aciton: :edit, class: "chat-view__header__contents__info__right__edit-btn"
+            = link_to "Edit", edit_group_path(@group), aciton: :edit, class: "chat-view__header__contents__info__right__edit-btn"
     .chat-view__messages
       - if @chat.errors.any?
         %p.alert #{ @chat.errors.full_messages.first }
