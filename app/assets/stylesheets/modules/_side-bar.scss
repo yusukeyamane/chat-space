@@ -8,9 +8,7 @@
     background-color: $blue-black;
     padding: 20px;
     position: relative;
-    // width: 100%;
     &__contents {
-      // width: 100%;
       @include clearfix();
       &__list-user-name {
         color: #FFF;
@@ -36,6 +34,7 @@
     height: 100%;
     width: 100%;
     background-color: $deep-blue;
+    overflow-y: scroll;
     &__list {
       display: block;
       padding: 20px 20px;
