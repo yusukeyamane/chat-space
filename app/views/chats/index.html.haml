@@ -6,7 +6,10 @@
         .chat-view__header__contents__info
           .chat-view__header__contents__info__left
             %h5 #{@group.name}
-            %p Members:
+            %p
+              Members:
+              - @group_users.each do |group_user|
+                %span= group_user.user.name
           .chat-view__header__contents__info__right
             = link_to "Edit", edit_group_path(@group), aciton: :edit, class: "chat-view__header__contents__info__right__edit-btn"
     .chat-view__messages

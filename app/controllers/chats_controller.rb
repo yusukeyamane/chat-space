@@ -1,9 +1,8 @@
 class ChatsController < ApplicationController
 
   def index
-    set_group_and_group_and_chats
-    @users = GroupUser.where(group_id: params[:group_id])
-    user = User.find(1)
+    set_groups_and_chats
+    @group_users = GroupUser.where(group_id: params[:group_id])
     @chat = Chat.new
   end
 
@@ -20,7 +19,7 @@ class ChatsController < ApplicationController
 
   private
 
-  def set_group_and_group_and_chats
+  def set_groups_and_chats
     @groups = Group.all
     @group = Group.find(params[:group_id])
     @chats = Chat.where(group_id: params[:group_id])
