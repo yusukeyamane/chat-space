@@ -1,8 +1,8 @@
 %li.chat-view__messages__contents__list
   .chat-view__messages__contents__list__header
     %p.chat-view__messages__contents__list__header-user-name
-      Seo
+      = chat.user.name
     %p.chat-view__messages__contents__list__header-post-time
       #{chat.created_at}
-  .chat-view__messages__contents__list__body
-    %p #{chat.body}
+  %p.chat-view__messages__contents__list__body
+    #{chat.body}
