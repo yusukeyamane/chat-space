@@ -31,7 +31,7 @@ class ChatsController < ApplicationController
   end
 
   def set_groups_and_chats
-    @groups = Group.all
+    @groups = current_user.groups
     @group = Group.find(params[:group_id])
     @chats = Chat.where(group_id: params[:group_id])
     @group_users = GroupUser.where(group_id: params[:group_id])

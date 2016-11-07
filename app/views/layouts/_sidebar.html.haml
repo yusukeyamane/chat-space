@@ -3,7 +3,7 @@
     %ul.sidebar__header__contents
       %li.sidebar__header__contents__list-user-name
         %h5
-          Yusuke
+          = current_user.name
       %li.sidebar__header__contents__list
         = link_to new_group_path, class: "sidebar__header__contents__list__icon" do
           = fa_icon "pencil-square-o"
