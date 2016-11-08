@@ -19,14 +19,15 @@
       = text_field_tag :name, '', class: 'chat-group-form__input', placeholder: '追加したいユーザー名を入力してください'
       #user-search-result
   .chat-group-form__field.clearfix
-    #group_member.chat-group-form__field--left
+    .chat-group-form__field--left
       = f.label 'チャットメンバー', class: 'chat-group-form__label'
-    .chat-group-form__field--right
+    #group_member.chat-group-form__field--right
       - @group.users.each do |user|
         .chat-group-user{ id: "chat-group-user-#{user.id}" }
           %p.chat-group-user__name= user.name
+          %input{ name: "group[user_ids][]", value: "#{user.id}", type: "hidden" }
           - if current_user.id != user.id
-            = link_to '削除', "", class: "user-search-remove chat-group-user__btn chat-group-user__btn--remove", data: { user_id: user.id }
+            = link_to '削除', "", class: " chat-group-user__btn chat-group-user__btn--remove", data: { user_id: user.id, user_name: user.name }
 
   .chat-group-form__field.clearfix
     .chat-group-form__field--left

@@ -26,7 +26,7 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to group_chats_path(@group), notice: 'グループの更新に成功しました'
     else
-      flash[:alert] = 'グループの作成に更新しました'
+      flash[:alert] = 'グループの作成に失敗しました'
       render :edit
     end
   end

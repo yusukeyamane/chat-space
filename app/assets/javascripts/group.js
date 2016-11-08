@@ -6,17 +6,44 @@ $(document).on('turbolinks:load', function(){
     }
   });
 
-  function searchUser(data) {
+  function buildchatMemberHtml(id, name) {
+    var html =
+        '<div class="chat-group-user"  id="chat-group-user-' + id + '">' +
+          '<input name="group[user_ids][]", type="hidden" value="' + id + '"' + '>' +
+          '<p class="chat-group-user__name">' +
+            name +
+          '</p>' +
+          '<a class="user-search-remove chat-group-user__btn chat-group-user__btn--remove"' + "data-user-id=" + id + '>' +
+            '削除' +
+          '</a>' +
+      '</div>';
+    return html
+  }
+
+  function buildHtml(user) {
+    var html =
+      '<div class="chat-group-user" id="search_user-' + user.id + '"' + '>' +
+          '<p class="chat-group-user__name">' +
+            user.name +
+          '</p>' +
+          '<a class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="' + user.id + '" data-user-name="' + user.name + '">追加' +
+          '</a>' +
+      '</div>';
+    return html
+  }
+
+  function searchUser() {
     $.ajax("/users.json", {
       type: "GET",
       data: {
         name: input_data
       },
       success: function(data) {
-        for (var i = 0; i < data.length; i++) {
-          var insertHtml = buildHtml(data[i]);
-          $("#user-search-result").append(insertHtml);
-        }
+        var insertHtml = '';
+        data.forEach(function(user){
+          insertHtml += buildHtml(user);
+        });
+        $("#user-search-result").html(insertHtml);
       },
       error: function(errormessage) {
       }
@@ -24,29 +51,26 @@ $(document).on('turbolinks:load', function(){
     pre_data = input_data;
   }
 
-  function buildHtml(user) {
-    var html =
-      '<div class="chat-group-users">' +
-        '<div class="chat-group-user">' +
-          '<p class="chat-group-user__name">' +
-            user.name +
-          '</p>' +
-          '<a class="user-search-remove chat-group-user__btn chat-group-user__btn--add"' + "data-user-id=" + user.id + '>' +
-            '追加' +
-          '</a>' +
-        '</div>' +
-      '</div>';
-    return html
-    }
-
   $("input#name").on("change keyup", function() {
     input_data = $(this).val();
     if (pre_data != input_data && input_data.length != '') {
-      $("#user-search-result .chat-group-user").remove();
-      searchUser(input_data);
+      searchUser();
     }
   });
 
-  $ (".chat-group-user__btn--remove").on("click", function() {
+  $("#group_member").on("click", ".chat-group-user__btn--remove", function(e) {
+    e.preventDefault();
+    user_id = ($(this).data("user-id"));
+    $("#chat-group-user-" + user_id).remove("")
+  });
+
+  $("#user-search-result").on("click", '.user-search-add', function(e) {
+    e.preventDefault();
+    user_id = ($(this).data("user-id"));
+    user_name = ($(this).data("user-name"));
+    var insertHtml = buildchatMemberHtml(user_id, user_name)
+    $("#group_member").append(insertHtml);
+    console.log(user_id);
+    $("#search_user-" + user_id).remove("")
   });
 });
