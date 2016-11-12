@@ -53,7 +53,7 @@ $(document).on('turbolinks:load', function(){
 
   $("input#name").on("change keyup", function() {
     input_data = $(this).val();
-    if (pre_data != input_data && input_data.length != '') {
+    if (pre_data != input_data && input_data.length != 0) {
       searchUser();
     }
   });
@@ -68,9 +68,8 @@ $(document).on('turbolinks:load', function(){
     e.preventDefault();
     user_id = ($(this).data("user-id"));
     user_name = ($(this).data("user-name"));
-    var insertHtml = buildchatMemberHtml(user_id, user_name)
+    var insertHtml = buildchatMemberHtml(user_id, user_name);
     $("#group_member").append(insertHtml);
-    console.log(user_id);
     $("#search_user-" + user_id).remove("")
   });
 });
