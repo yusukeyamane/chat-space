@@ -22,12 +22,7 @@
     .chat-group-form__field--left
       = f.label 'チャットメンバー', class: 'chat-group-form__label'
     #group_member.chat-group-form__field--right
-      - @group.users.each do |user|
-        .chat-group-user{ id: "chat-group-user-#{user.id}" }
-          %p.chat-group-user__name= user.name
-          %input{ name: "group[user_ids][]", value: "#{user.id}", type: "hidden" }
-          - if current_user.id != user.id
-            = link_to '削除', "", class: " chat-group-user__btn chat-group-user__btn--remove", data: { user_id: user.id, user_name: user.name }
+      = render partial: "user", collection: @group.users
 
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
