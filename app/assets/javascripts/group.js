@@ -40,7 +40,7 @@ $(document).on('turbolinks:load', function(){
       },
       success: function(data) {
         var insertHtml = '';
-        data.forEach(function(user){
+        $.each(data, function(i, user){
           insertHtml += buildHtml(user);
         });
         $("#user-search-result").html(insertHtml);
