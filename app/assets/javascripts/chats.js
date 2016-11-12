@@ -4,10 +4,10 @@ $(document).on('turbolinks:load', function(){
       '<li class="chat-view__messages__contents__list">' +
       '<div class="chat-view__messages__contents__list__header">' +
       '<p class="chat-view__messages__contents__list__header-user-name">' +
-      message.name +
+      message.user.name +
       '</p>' +
       '<p class="chat-view__messages__contents__list__header-post-time">' +
-      message.time +
+      message.created_at +
       '</p>' +
       '</div>' +
       '<p class="chat-view__messages__contents__list__body">' +
@@ -18,14 +18,14 @@ $(document).on('turbolinks:load', function(){
   }
 
   function goBottom() {
-    $('.chat-view__messages').scrollTop( $('.chat-view__messages__contents').height() );
+    $('.chat-view__messages').scrollTop( $('.chat-view__messages__contents').height());
   }
 
   goBottom();
 
-  $("#new_chat").on('submit', function(e) {
+  $("#new_chat").on('click', function(e) {
+    e.preventDefault();
     var message = $(this).find('#chat_body').prop('value');
-    var group_id = $(this).find('#chat_group_id').prop('value')
 
   $.ajax(document.location.href + ".json", {
       type: "POST",

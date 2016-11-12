@@ -3,21 +3,22 @@ class ChatsController < ApplicationController
 
   def index
     set_groups_and_chats
-    @group_users = GroupUser.where(group_id: params[:group_id])
     @chat = Chat.new
   end
 
   def create
     user = User.find(current_user.id)
-    @chat = current_user.chats.new(chats_params)
+    chat = current_user.chats.new(chats_params)
     respond_to do |format|
-      if @chat.save
-        format.html { redirect_to group_chats_path(params[:group_id]) }
-        format.json {
-          render json: { message: @chat.body, name: current_user.name }
-        }
+      if chat.save
+        format.html do
+          redirect_to group_chats_path(params[:group_id]), notice: "メッセージが送信されました！！"
+        end
+        format.json do
+          render json: chat, include: :user
+        end
       else
-        set_group_and_group_and_chats
+        set_groups_and_chats
         render :index
       end
     end
@@ -30,9 +31,10 @@ class ChatsController < ApplicationController
   end
 
   def set_groups_and_chats
-    @groups = Group.all
+    @groups = current_user.groups
     @group = Group.find(params[:group_id])
     @chats = Chat.where(group_id: params[:group_id])
+    @group_users = GroupUser.where(group_id: params[:group_id])
   end
 
   def chats_params
