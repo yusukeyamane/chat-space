@@ -2,14 +2,14 @@ class ChatsController < ApplicationController
   skip_before_action :verify_authenticity_token, if: :json_request?
 
   def index
-    set_groups_and_chats
     @chat = Chat.new
+    set_groups_and_chats
     respond_to do |format|
       format.html do
         render :index
       end
       format.json do
-        render json: @chat, include: :user
+        render json: @chats, include: :user
       end
     end
   end
