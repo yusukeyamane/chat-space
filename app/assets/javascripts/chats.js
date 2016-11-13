@@ -1,4 +1,9 @@
 $(document).on('turbolinks:load', function(){
+
+  function autoload() {
+    setInterval("location.reload()", 10000)
+  };
+
   function buildHtml(message) {
     var html =
       '<li class="chat-view__messages__contents__list">' +
@@ -22,15 +27,17 @@ $(document).on('turbolinks:load', function(){
   }
 
   goBottom();
-
-  $("#new_chat").on('click', function(e) {
+  autoload();
+  $("#new_chat").on('submit', function(e) {
     e.preventDefault();
     var message = $(this).find('#chat_body').prop('value');
+    var group_id = $(this).find('#chat_group_id').prop('value');
 
   $.ajax(document.location.href + ".json", {
       type: "POST",
       data: { chat: {
-                body: message
+                body: message,
+                group_id: group_id
               }
             },
       success: function(data) {
