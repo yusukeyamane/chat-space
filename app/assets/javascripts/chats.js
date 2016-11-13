@@ -1,8 +1,21 @@
 $(document).on('turbolinks:load', function(){
 
   function autoload() {
-    setInterval("location.reload()", 10000)
-  };
+    var group_id = $(this).find('#chat_group_id').prop('value');
+      $.ajax(document.location.href + ".json", {
+      type: "GET",
+      data: { chat: {
+                group_id: group_id
+              }
+            },
+        success: function() {
+          goBottom();
+        },
+        error: function(errormessage) {
+          alert();
+        }
+      });
+    };
 
   function buildHtml(message) {
     var html =
@@ -27,7 +40,10 @@ $(document).on('turbolinks:load', function(){
   }
 
   goBottom();
-  autoload();
+  setInterval(function(){
+    autoload();
+  }, 1000);
+
   $("#new_chat").on('submit', function(e) {
     e.preventDefault();
     var message = $(this).find('#chat_body').prop('value');

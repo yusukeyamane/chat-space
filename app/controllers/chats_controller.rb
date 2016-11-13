@@ -4,6 +4,14 @@ class ChatsController < ApplicationController
   def index
     set_groups_and_chats
     @chat = Chat.new
+    respond_to do |format|
+      format.html do
+        render :index
+      end
+      format.json do
+        render json: @chat, include: :user
+      end
+    end
   end
 
   def create
