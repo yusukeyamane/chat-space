@@ -50,10 +50,10 @@ $(document).on('turbolinks:load', function(){
     autoload();
   }, 10000)};
 
-  $("#new_chat").on('submit', function(e) {
+  $("#submit_btn").on('click', function(e) {
     e.preventDefault();
-    var message = $(this).find('#chat_body').prop('value');
-    var group_id = $(this).find('#chat_group_id').prop('value');
+    var message = $('#chat_body').val();
+    var group_id = $('#chat_group_id').val();
 
   $.ajax(document.location.href + ".json", {
       type: "POST",
