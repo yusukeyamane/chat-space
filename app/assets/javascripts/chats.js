@@ -8,7 +8,12 @@ $(document).on('turbolinks:load', function(){
                 group_id: group_id
               }
             },
-        success: function() {
+        success: function(chats) {
+          $.each(chats, function(i, chat){
+            var inserthtml = buildHtml(chat);
+            $("ul.chat-view__messages__contents").append(inserthtml);
+            $('input#chat_body').val("")
+          });
           goBottom();
         },
         error: function(errormessage) {
@@ -40,9 +45,10 @@ $(document).on('turbolinks:load', function(){
   }
 
   goBottom();
+  if (document.location.href.match(/\/groups\/\d+\/chats/)) {
   setInterval(function(){
     autoload();
-  }, 1000);
+  }, 10000)};
 
   $("#new_chat").on('submit', function(e) {
     e.preventDefault();
