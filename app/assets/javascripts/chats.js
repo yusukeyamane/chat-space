@@ -1,4 +1,27 @@
 $(document).on('turbolinks:load', function(){
+
+  function autoload() {
+    var group_id = $(this).find('#chat_group_id').prop('value');
+      $.ajax(document.location.href + ".json", {
+      type: "GET",
+      data: { chat: {
+                group_id: group_id
+              }
+            },
+        success: function(chats) {
+          $.each(chats, function(i, chat){
+            var inserthtml = buildHtml(chat);
+            $("ul.chat-view__messages__contents").append(inserthtml);
+            $('input#chat_body').val("")
+          });
+          goBottom();
+        },
+        error: function(errormessage) {
+          alert();
+        }
+      });
+    };
+
   function buildHtml(message) {
     var html =
       '<li class="chat-view__messages__contents__list">' +
@@ -22,15 +45,21 @@ $(document).on('turbolinks:load', function(){
   }
 
   goBottom();
+  if (document.location.href.match(/\/groups\/\d+\/chats/)) {
+  setInterval(function(){
+    autoload();
+  }, 10000)};
 
-  $("#new_chat").on('click', function(e) {
+  $("#submit_btn").on('click', function(e) {
     e.preventDefault();
-    var message = $(this).find('#chat_body').prop('value');
+    var message = $('#chat_body').val();
+    var group_id = $('#chat_group_id').val();
 
   $.ajax(document.location.href + ".json", {
       type: "POST",
       data: { chat: {
-                body: message
+                body: message,
+                group_id: group_id
               }
             },
       success: function(data) {
