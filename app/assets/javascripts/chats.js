@@ -1,5 +1,4 @@
 $(document).on('turbolinks:load', function(){
-
   function autoload() {
     var group_id = $(this).find('#chat_group_id').prop('value');
       $.ajax(document.location.href + ".json", {
