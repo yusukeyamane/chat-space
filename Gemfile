@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-gem 'mysql2', '>= 0.3.13', '< 0.5'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'rails', '~> 5.2.0'
+gem 'mysql2'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'jbuilder'
+gem 'sdoc'
 gem 'haml-rails'
 gem 'erb2haml'
 gem "font-awesome-rails"
@@ -23,7 +23,7 @@ group :development, :test do
   gem 'bullet'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'factory_girl_rails', '~> 4.0'
+  gem 'factory_bot'
   gem 'faker'
   gem 'rubocop', '0.35.1', require: false
   gem 'onkcop'
@@ -40,4 +40,3 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'annotate'
 end
-
