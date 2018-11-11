@@ -25,7 +25,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot'
   gem 'faker'
-  gem 'rubocop', '0.35.1', require: false
   gem 'onkcop'
 end
 

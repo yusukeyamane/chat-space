@@ -312,7 +312,6 @@ DEPENDENCIES
   rails (~> 5.2.0)
   rspec
   rspec-rails
-  rubocop (= 0.35.1)
   sass-rails
   sdoc
   spring
